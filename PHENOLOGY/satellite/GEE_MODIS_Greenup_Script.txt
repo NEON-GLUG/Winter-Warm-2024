@@ -1,0 +1,76 @@
+GEE code here and can be accessed via: https://code.earthengine.google.com/26d6cc991465e8c3b08ccc5052ef7a04
+
+IMPORT 2 VARIABLES - MCD12Q2
+
+var mcd12q2: ImageCollection MODIS/061/MCD12Q2
+  type: ImageCollection
+  id: MODIS/061/MCD12Q2
+  version: 1775722706134422
+  bands: []
+  properties: Object (1 property)
+
+var points: Table projects/ersamlab-gee/assets/all_midwest_camera_locations3
+  type: FeatureCollection
+  id: projects/ersamlab-gee/assets/all_midwest_camera_locations3
+  version: 1768595829345661
+  columns: Object (6 properties)
+  properties: Object (1 property)
+
+// ==============================
+// USER INPUTS
+// ==============================
+var startYear = 2001;
+var endYear   = 2024;
+var bands = ['Greenup_1', 'MidGreenup_1'];
+
+// ------------------------------
+// BUILD MULTI-YEAR STACK
+// ------------------------------
+var years = ee.List.sequence(startYear, endYear);
+
+var yearlyImages = years.map(function(year) {
+  year = ee.Number(year);
+
+  var img = mcd12q2
+    .filterDate(
+      ee.Date.fromYMD(year, 1, 1),
+      ee.Date.fromYMD(year, 12, 31)
+    )
+    .select(bands)
+    .first();
+
+  // Rename bands to include year
+var yearStr = year.format('%d');
+
+var renamed = img.rename([
+  ee.String('Greenup_1_').cat(yearStr),
+  ee.String('MidGreenup_1_').cat(yearStr)
+]);
+
+  return renamed;
+});
+
+// Convert list → Image
+var stacked = ee.ImageCollection.fromImages(yearlyImages).toBands();
+
+// ------------------------------
+// SAMPLE ONCE
+// ------------------------------
+var sampled = stacked.sampleRegions({
+  collection: points,
+  properties: points.first().propertyNames(),
+  scale: 500,
+  geometries: true
+});
+
+print(sampled.first());
+
+// ------------------------------
+// EXPORT
+// ------------------------------
+Export.table.toDrive({
+  collection: sampled,
+  folder: 'earthengineoutput',
+  description: 'MCD12Q2_Greenup_MidGreenup_2001_2024',
+  fileFormat: 'CSV'
+});

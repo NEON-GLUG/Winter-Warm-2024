@@ -1,0 +1,16 @@
+Order,Site_Code,Camera,Lat,Lon,Elev(m),Site Description
+1,UNDE,NEON_UNDE,46.23391,-89.537254,529,"NEON Site - D05 (Great Lakes) UNDERC, Michigan - tower top"
+2,UNDE-ph,pheno loc,46.23197,-89.54215,,NEON pheno observations location
+3,SYLV,sylvania,46.242,-89.348,540,"Sylvania Wilderness, Wisconsin"
+4,WILL,willowcreek,45.805986,-90.07912,521,"Willow Creek, Chequamegon-Nicolet National Forest, Wisconsin"
+5,STEI,NEON_STEI,45.50894,-89.58637,476,"NEON Site - D05 (Great Lakes) Steigerwaldt Land Services, Wisconsin - top-of-tower camera"
+6,STEI-ph,pheno loc,45.50487,-89.58568,,NEON pheno observations location
+7,UMB1,umichbiological,45.55984,-84.71382,230,"University of Michigan Biological Station, near Pellston, Michigan"
+8,UMB2,umichbiological2,45.5625,-84.6976,240,"FASET Tower, University of Michigan Biological Station, near Pellston, Michigan"
+9,TREE,NEON_TREE,45.49373,-89.58572,474,"NEON Site - D05 (Great Lakes) Treehaven, Wisconsin - tower top"
+10,TREE-ph,pheno loc,45.49161,-89.59439,,NEON pheno observations location
+11,MACO,macordway,44.8106,-93.0272,264,Macalester Ordway Field Station
+12,UWMF,uwmfieldsta,43.38709,-88.0229,265,"University of Wisconsin-Milwaukee Field Station, Saukville, Wisconsin"
+13,DOWN,downerwoods,43.07938,-87.88076,213,"UW-Milwaukee Field Station, Downer Woods Natural Area, Milwaukee, Wisconsin"
+14,DOWN-ph,pheno loc,43.080986,-87.88109,,phenology observations location from https://doi.pangaea.de/10.1594/PANGAEA.967456
+15,SANF,sanford,42.726777,-84.464482,268,"Sanford Natural Area, Michigan State University, East Lansing, Michigan"
