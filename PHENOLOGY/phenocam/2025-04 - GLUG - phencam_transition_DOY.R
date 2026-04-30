@@ -15,13 +15,9 @@ library(broom)
 
 options(scipen=999)
 
-# Set wd
-# Change wd to be for this project
-setwd("C:/Jalene/DePaul/Research/Projects/Collaborations/GLUG - El nino")
-
 #Get the data into R
-dat<-read.csv('phenocam_transition_DOY_stats.csv', header=T)
-names <- read.csv("sitenames.csv", header=T)
+dat<-read.csv('./PHENOLOGY/phenocam/phenocam_transition_DOY_stats.csv', header=T)
+names <- read.csv("./PHENOLOGY/phenocam/sitenames.csv", header=T)
 str(dat)
 
 # lets get our clean site names (lazy loop)
