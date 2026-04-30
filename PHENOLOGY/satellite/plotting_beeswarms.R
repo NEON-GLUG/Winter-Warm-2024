@@ -4,14 +4,10 @@ library(lubridate)
 library(ggbeeswarm)
 library(dplyr)
 
-setwd("C:/Users/kylad/Dropbox/GLUG_pheno_2024/greenup/")
-
-#in.names <- read.csv("sitenames.csv")
-
-df <- read.csv("MCD12Q2_Greenup_MidGreenup_2001_2024_20260116.csv")
+df <- read.csv("./PHENOLOGY/satellite/MCD12Q2_Greenup_MidGreenup_2001_2024_20260116.csv")
 df <- subset(df, df$Site_Code != "DOWN-ph")
 
-clim <- read.csv("climate_year_types.csv")
+clim <- read.csv("./PHENOLOGY/satellite/climate_year_types.csv")
 names(clim) <- c("Year", "Climate")
 
 phen_cols <- names(df)[grepl("Greenup", names(df), ignore.case = TRUE)]
@@ -70,9 +66,9 @@ df_long$Color_numeric <- ifelse(df_long$Year == 2024, NA, df_long$Year)
 
 # Plot
 
-ggplot(df_long, aes(x = Site_Code, y = DOY, color = Climate)) +
+ggplot(df_long, aes(x = Site_Code, y = DOY)) +
   geom_quasirandom(
-    aes(shape = factor(Shape), size = factor(Shape))
+    aes(shape = factor(Shape), size = factor(Shape), color = Climate)
   ) +
   scale_shape_manual(
     name = "Year group",
@@ -107,5 +103,6 @@ ggplot(df_long, aes(x = Site_Code, y = DOY, color = Climate)) +
       override.aes = list(
         size = c(2, 3.5)   # must match scale_size_manual values
       )
-    )
+    ) +
+    geom_boxplot()
   )
