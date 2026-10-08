@@ -128,8 +128,8 @@ model_output_data <- data.frame(
 
 ### Add confidence intervals
 model_output_data <- model_output_data %>%
-  mutate(oni_lower = oni_fit - 1.96 * oni_se.fit,
-         oni_upper = oni_fit + 1.96 * oni_se.fit)
+  mutate(oni_lower = oni_fit - oni_se.fit,
+         oni_upper = oni_fit + oni_se.fit)
 
 # 6. Figure: ONI impact on Peak Flow ----
 # width = 800 height = 600
